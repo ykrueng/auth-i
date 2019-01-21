@@ -27,8 +27,27 @@ server.post("/register", async (req, res) => {
     } else {
       res.status(500).send("Failed to register.");
     }
-  } catch {
+  } catch (err) {
     res.status(500).send("Failed to register.");
+  }
+});
+
+server.post("/api/login", async (req, res) => {
+  const user = req.body;
+
+  if (!user || !user.username || !user.password) {
+    res.status(400).send("Invalid username or password.");
+  }
+
+  try {
+    const result = await db.getUser(user.username);
+    if (result.length && bcrypt.compareSync(user.password, result[0].password)) {
+      res.status(200).json("Login success");
+    } else {
+      res.status(400).send("Invalid username or password.");
+    }
+  } catch (err) {
+    res.status(500).send("Failed to login.");
   }
 });
 
