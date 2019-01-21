@@ -11,7 +11,7 @@ server.get("/", (req, res) => {
   res.send("Welcome to Auth-i Project");
 });
 
-server.post("/register", async (req, res) => {
+server.post("/api/register", async (req, res) => {
   const user = req.body;
 
   if (!user || !user.username || !user.password) {
