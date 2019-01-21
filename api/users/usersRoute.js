@@ -5,7 +5,7 @@ const error = require("./usersError");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   const { userId } = req.session;
 
   if (!userId) {
