@@ -40,8 +40,12 @@ server.post("/api/login", async (req, res) => {
   }
 
   try {
-    const result = await db.getUser(user.username);
-    if (result.length && bcrypt.compareSync(user.password, result[0].password)) {
+    const result = await db.getUserByName(user.username);
+    if (
+      result.length &&
+      bcrypt.compareSync(user.password, result[0].password)
+    ) {
+      req.session.userId = result[0].id;
       res.status(200).json("Login success");
     } else {
       res.status(400).send("Invalid username or password.");
