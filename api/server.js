@@ -55,4 +55,19 @@ server.post("/api/login", async (req, res) => {
   }
 });
 
+server.get("/api/users", async(req, res) => {
+  const { userId } = req.session;
+
+  if (!userId) {
+    res.status(401).send('You shall not pass!')
+  } else {
+    try {
+      const users = await db.getUsers();
+      res.status(200).json(users);
+    } catch (err) {
+      res.status(500).json('Failed to fetch users');
+    }
+  }
+})
+
 module.exports = server;

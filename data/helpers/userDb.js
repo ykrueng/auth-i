@@ -5,6 +5,10 @@ module.exports = {
     return db("users").insert(user);
   },
 
+  getUsers: function() {
+    return db("users").select("id", "username");
+  },
+
   getUserByName: function (username) {
     return db("users").where("username", username);
   },
