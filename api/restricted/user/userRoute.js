@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const { userId } = req.session;
+
+  console.log(userId);
   try {
     const user = await db.getUserById(userId);
     if (user.length) {

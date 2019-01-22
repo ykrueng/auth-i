@@ -7,7 +7,10 @@ const helmet = require("helmet");
 const sessionConfig = require("./sessionConfig");
 
 module.exports = server => {
-  server.use(cors());
+  server.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+  }));
   server.use(session(sessionConfig));
   server.use(bodyParser.json());
   server.use(morgan("short"));

@@ -8,6 +8,8 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   const { userId } = req.session;
 
+  console.log('userId', userId);
+
   if (!userId) {
     next(401);
   } else {
