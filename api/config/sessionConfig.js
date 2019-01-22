@@ -7,5 +7,5 @@ module.exports = {
   },
   httpOnly: true, // don't let JS code access cookies. Browser extensions run JS code on your browser!
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 };

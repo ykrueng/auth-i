@@ -16,4 +16,6 @@ router.get('/', (req, res, next) => {
   }
 });
 
+router.use(error);
+
 module.exports = router;
