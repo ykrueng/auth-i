@@ -1,12 +1,15 @@
-import React from 'react';
-import { Segment, Header } from 'semantic-ui-react';
+import React from "react";
 
-const Home = () => {
+import UserList from "./UserList";
+import AuthPage from "./AuthPage";
+
+const Home = ({ users, logout, login, isLoggedIn}) => {
   return (
-    <Segment>
-      <Header textAlign="center" as="h1">Welcome To Auth - I</Header>
-    </Segment>
-   );
-}
- 
+    <>
+      {users.length ? <UserList users={users} logout={logout} /> : null}
+      {!isLoggedIn && <AuthPage submit={login} login />}
+    </>
+  );
+};
+
 export default Home;
